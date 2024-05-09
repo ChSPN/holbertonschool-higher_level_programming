@@ -18,7 +18,11 @@ if __name__ == "__main__":
     elif operator == '*':
         result = mul(a, b)
     elif operator == '/':
-        result = div(a, b)
+        if b != 0:
+            result = div(a, b)
+        else:
+            print("Error: division by zero")
+            sys.exit(1)
     else:
         print("Unknown operator. Available operators: +, -, * and /")
         sys.exit(1)
