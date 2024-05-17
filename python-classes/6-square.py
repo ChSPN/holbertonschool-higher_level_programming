@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+"""
+This module defines a Square class. It defines a square with a size and
+position, and can print it.
+"""
+
+
 class Square:
     """
     This is a Square class. It defines a square with a size and position,
