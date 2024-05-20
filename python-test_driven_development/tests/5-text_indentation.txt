@@ -1,0 +1,14 @@
+>>> text_indentation("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quonam modo?")
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+Quonam modo?
+
+>>> text_indentation("Non autem hoc: igitur ne illud quidem.")
+Non autem hoc:
+
+igitur ne illud quidem.
+
+>>> text_indentation(123)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
