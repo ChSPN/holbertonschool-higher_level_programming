@@ -1,22 +1,14 @@
 #!/usr/bin/python3
 """
-Ce module contient une fonction qui ajoute deux entiers.
+Ce module contient la fonction add_integer.
+Elle prend deux arguments (a, b) et renvoie leur somme.
+Si a ou b ne sont pas des entiers ou des flottants, elle lève une TypeError.
 """
 
 
 def add_integer(a, b=98):
     """
-    Ajoute deux entiers.
-
-    Args:
-        a (int, float): Le premier nombre à ajouter.
-        b (int, float, optional): Le deuxième nombre à ajouter. Par défaut 98.
-
-    Returns:
-        int: La somme de a et b.
-
-    Raises:
-        TypeError: Si a ou b ne sont pas des entiers ou des flottants.
+    Renvoie la somme de a et b après vérification du type.
     """
     if not isinstance(a, (int, float)):
         raise TypeError("a must be an integer")
