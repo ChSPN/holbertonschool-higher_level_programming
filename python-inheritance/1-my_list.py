@@ -1,23 +1,19 @@
 #!/usr/bin/python3
 """
-Ce module contient une classe qui hérite de list.
-
-`MyList` a une méthode publique `print_sorted` imprimant la liste triée.
+Ce module définit `MyList`, une extension de `list` de Python.
+Elle ajoute une fonction pour imprimer la liste triée.
 """
 
 
 class MyList(list):
     """
-    Une classe qui hérite de list.
-
-    Méthodes :
-        print_sorted : Imprime la liste triée.
+    `MyList` est une extension de `list` de Python.
+    Elle ajoute une méthode `print_sorted`.
     """
 
     def print_sorted(self):
         """
-        Imprime la liste triée.
-
-        La méthode utilise `sorted` pour trier la liste et l'imprimer.
+        Imprime les éléments de `MyList` triés.
+        Ne modifie pas l'ordre original de la liste.
         """
         print(sorted(self))
