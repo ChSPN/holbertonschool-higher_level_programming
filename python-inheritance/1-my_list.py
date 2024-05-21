@@ -1,19 +1,17 @@
 #!/usr/bin/python3
 """
-Ce module définit `MyList`, une extension de `list` de Python.
-Elle ajoute une fonction pour imprimer la liste triée.
+This module defines the MyList class that inherits from list.
 """
 
 
 class MyList(list):
     """
-    `MyList` est une extension de `list` de Python.
-    Elle ajoute une méthode `print_sorted`.
+    A subclass of list that includes a method to print the list in sorted order
     """
 
     def print_sorted(self):
         """
-        Imprime les éléments de `MyList` triés.
-        Ne modifie pas l'ordre original de la liste.
+        Prints the list in ascending order.
         """
-        print(sorted(self))
+        sorted_list = sorted(self)
+        print(sorted_list)
