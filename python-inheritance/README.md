@@ -1,52 +1,61 @@
-# Nom du Projet
+# MyList Class
 
-## Description
+This project defines a class `MyList` that inherits from the built-in `list` class in Python. The `MyList` class includes a method `print_sorted` which prints the list in ascending order without modifying the original list.
 
-Une brève description de ce que fait votre projet.
+## Files
 
-## Installation
+- `1-my_list.py`: Contains the definition of the `MyList` class.
+- `tests/1-my_list.txt`: Contains test cases for the `MyList` class.
 
-Expliquez comment installer votre projet. Par exemple, si vous utilisez Python, vous pouvez expliquer comment installer les dépendances avec pip.
+## Requirements
 
-## Utilisation
+- Python 3.8.5
+- Pycodestyle 2.7.*
+- Ubuntu 20.04 LTS
 
-Donnez quelques exemples de comment utiliser votre projet. Si c'est une bibliothèque, montrez comment l'utiliser dans le code. Si c'est une application web, expliquez comment la démarrer et où aller pour l'utiliser.
+## Usage
 
-## Contribution
+To use the `MyList` class, simply import it and use it like a regular list. You can call the `print_sorted` method to print the list in sorted order.
 
-Si vous voulez que d'autres personnes contribuent à votre projet, expliquez comment ils peuvent le faire. Par exemple, vous pouvez leur dire de soumettre des pull requests.
+Example:
+```python
+my_list = MyList()
+my_list.append(1)
+my_list.append(4)
+my_list.append(2)
+my_list.append(3)
+my_list.append(5)
+print(my_list)         # Output: [1, 4, 2, 3, 5]
+my_list.print_sorted() # Output: [1, 2, 3, 4, 5]
+print(my_list)         # Output: [1, 4, 2, 3, 5]
 
-## Licence
+# MyList Class
 
-Si votre projet est open source, indiquez la licence sous laquelle il est distribué.
+This project defines a class `MyList` that inherits from the built-in `list` class in Python. The `MyList` class includes a method `print_sorted` which prints the list in ascending order without modifying the original list.
 
-Projet Python : Exploration des objets
-Description
-Ce projet est une exploration des objets en Python. Il comprend une série de scripts qui démontrent différentes fonctionnalités et caractéristiques des objets en Python.
+## Files
 
-Installation
-Ce projet a été développé en utilisant Python 3.8.5. Pour installer les dépendances nécessaires, vous pouvez utiliser pip :
+- `1-my_list.py`: Contains the definition of the `MyList` class.
+- `tests/1-my_list.txt`: Contains test cases for the `MyList` class.
 
-Utilisation
-Pour utiliser ces scripts, vous pouvez les exécuter directement à partir de la ligne de commande. Par exemple :
+## Requirements
 
-Contribution
-Si vous souhaitez contribuer à ce projet, veuillez soumettre une pull request.
+- Python 3.8.5
+- Pycodestyle 2.7.*
+- Ubuntu 20.04 LTS
 
-Licence
-Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
+## Usage
 
-Exigences
-Les scripts Python doivent être écrits avec les éditeurs autorisés : vi, vim, emacs.
-Tous les fichiers seront interprétés/compilés sur Ubuntu 20.04 LTS en utilisant python3 (version 3.8.5).
-Tous les fichiers doivent se terminer par une nouvelle ligne.
-La première ligne de tous les fichiers doit être exactement #!/usr/bin/python3.
-Un fichier README.md, à la racine du dossier du projet, est obligatoire.
-Le code doit utiliser le pycodestyle (version 2.7.*).
-Tous les fichiers doivent être exécutables.
-La longueur des fichiers sera testée en utilisant wc.
-Tous les fichiers de test doivent être à l'intérieur d'un dossier tests.
-Tous les fichiers de test doivent être des fichiers texte (extension : .txt).
-Tous les tests doivent être exécutés en utilisant cette commande : python3 -m doctest ./tests/*.
-Tous les modules, classes et fonctions doivent avoir une documentation.
-Ne pas utiliser les mots import ou from dans vos commentaires, le vérificateur pensera que vous essayez d'importer des modules.
+To use the `MyList` class, simply import it and use it like a regular list. You can call the `print_sorted` method to print the list in sorted order.
+
+Example:
+```python
+my_list = MyList()
+my_list.append(1)
+my_list.append(4)
+my_list.append(2)
+my_list.append(3)
+my_list.append(5)
+print(my_list)         # Output: [1, 4, 2, 3, 5]
+my_list.print_sorted() # Output: [1, 2, 3, 4, 5]
+print(my_list)         # Output: [1, 4, 2, 3, 5]

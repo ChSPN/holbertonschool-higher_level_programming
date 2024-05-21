@@ -1,4 +1,5 @@
->>> from 1-my_list import MyList
+>>> MyList = __import__('1-my_list').MyList
+
 >>> my_list = MyList()
 >>> my_list.append(1)
 >>> my_list.append(4)
@@ -11,3 +12,23 @@
 [1, 2, 3, 4, 5]
 >>> print(my_list)
 [1, 4, 2, 3, 5]
+
+>>> my_list_2 = MyList()
+>>> my_list_2.append(10)
+>>> my_list_2.append(2)
+>>> my_list_2.append(-3)
+>>> my_list_2.append(7)
+>>> print(my_list_2)
+[10, 2, -3, 7]
+>>> my_list_2.print_sorted()
+[-3, 2, 7, 10]
+>>> print(my_list_2)
+[10, 2, -3, 7]
+
+>>> my_list_empty = MyList()
+>>> print(my_list_empty)
+[]
+>>> my_list_empty.print_sorted()
+[]
+>>> print(my_list_empty)
+[]
