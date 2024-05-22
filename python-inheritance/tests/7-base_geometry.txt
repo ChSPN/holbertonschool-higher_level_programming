@@ -1,0 +1,5 @@
+La classe BaseGeometry a deux méthodes : area et integer_validator.
+
+La méthode area ne prend aucun argument et lève une exception avec le message "area() is not implemented" lorsqu'elle est appelée.
+
+La méthode integer_validator prend deux arguments : name et value. Elle lève une exception TypeError avec le message "<name> must be an integer" si value n'est pas un entier, et une exception ValueError avec le message "<name> must be greater than 0" si value est inférieur ou égal à 0.
