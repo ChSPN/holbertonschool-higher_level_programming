@@ -1,99 +1,28 @@
-# MyList Class
+# Projet Python : Héritage
 
-This project defines a class `MyList` that inherits from the built-in `list` class in Python. The `MyList` class includes a method `print_sorted` which prints the list in ascending order without modifying the original list.
+Ce projet comprend plusieurs scripts Python qui illustrent le concept d'héritage en programmation orientée objet.
 
-## Files
+## Fichiers
 
-- `1-my_list.py`: Contains the definition of the `MyList` class.
-- `tests/1-my_list.txt`: Contains test cases for the `MyList` class.
+- `0-lookup.py` : Une fonction qui renvoie la liste de méthodes et attributs disponibles pour un objet.
+- `1-my_list.py` : Une classe `MyList` qui hérite de la classe intégrée `list` en Python.
+- `2-is_same_class.py` : Une fonction qui vérifie si un objet est exactement une instance d'une classe spécifiée.
+- `3-is_kind_of_class.py` : Une fonction qui vérifie si un objet est une instance d'une classe ou d'une classe héritée de la classe spécifiée.
+- `4-inherits_from.py` : Une fonction qui vérifie si un objet est une instance d'une classe qui a hérité, directement ou indirectement, d'une classe spécifiée.
+- `5-base_geometry.py` : Une classe vide `BaseGeometry`.
+- `6-base_geometry.py` : Une classe `BaseGeometry` avec une méthode publique `area`.
+- `7-base_geometry.py` : Une classe `BaseGeometry` avec une méthode publique `area` et une méthode de validation d'entier.
+- `8-rectangle.py` : Une classe `Rectangle` qui hérite de `BaseGeometry`.
+- `9-rectangle.py` : Une classe `Rectangle` qui hérite de `BaseGeometry` avec une méthode `area` et une méthode `__str__`.
+- `10-square.py` : Une classe `Square` qui hérite de `Rectangle`.
+- `11-square.py` : Une classe `Square` qui hérite de `Rectangle` avec une méthode `area` et une méthode `__str__`.
 
-## Requirements
-
-- Python 3.8.5
-- Pycodestyle 2.7.*
-- Ubuntu 20.04 LTS
-
-## Usage
-
-To use the `MyList` class, simply import it and use it like a regular list. You can call the `print_sorted` method to print the list in sorted order.
-
-Example:
-```python
-my_list = MyList()
-my_list.append(1)
-my_list.append(4)
-my_list.append(2)
-my_list.append(3)
-my_list.append(5)
-print(my_list)         # Output: [1, 4, 2, 3, 5]
-my_list.print_sorted() # Output: [1, 2, 3, 4, 5]
-print(my_list)         # Output: [1, 4, 2, 3, 5]
-
-# MyList Class
-
-This project defines a class `MyList` that inherits from the built-in `list` class in Python. The `MyList` class includes a method `print_sorted` which prints the list in ascending order without modifying the original list.
-
-## Files
-
-- `1-my_list.py`: Contains the definition of the `MyList` class.
-- `tests/1-my_list.txt`: Contains test cases for the `MyList` class.
-
-## Requirements
+## Exigences
 
 - Python 3.8.5
 - Pycodestyle 2.7.*
 - Ubuntu 20.04 LTS
 
-## Usage
+## Utilisation
 
-To use the `MyList` class, simply import it and use it like a regular list. You can call the `print_sorted` method to print the list in sorted order.
-
-Example:
-```python
-my_list = MyList()
-my_list.append(1)
-my_list.append(4)
-my_list.append(2)
-my_list.append(3)
-my_list.append(5)
-print(my_list)         # Output: [1, 4, 2, 3, 5]
-my_list.print_sorted() # Output: [1, 2, 3, 4, 5]
-print(my_list)         # Output: [1, 4, 2, 3, 5]
-
-# BaseGeometry Class
-
-This project defines a class `BaseGeometry` with methods for geometric calculations and integer validation.
-
-## Files
-
-- `7-base_geometry.py`: Contains the definition of the `BaseGeometry` class.
-- `tests/7-base_geometry.txt`: Contains test cases for the `BaseGeometry` class.
-
-## Requirements
-
-- Python 3.8.5
-- Pycodestyle 2.7.*
-- Ubuntu 20.04 LTS
-
-## Usage
-
-To use the `BaseGeometry` class, import it and create an instance. You can call the `integer_validator` method to validate integers. The `area` method is not implemented and will raise an exception if called.
-
-Example:
-```python
-bg = BaseGeometry()
-
-# Validating an integer
-bg.integer_validator("my_int", 12)  # No exception
-
-# This will raise a TypeError
-try:
-    bg.integer_validator("name", "John")
-except Exception as e:
-    print(e)  # Output: name must be an integer
-
-# This will raise a ValueError
-try:
-    bg.integer_validator("age", 0)
-except Exception as e:
-    print(e)  # Output: age must be greater than 0
+Chaque fichier peut être exécuté individuellement pour tester son fonctionnement. Par exemple, pour tester la classe `MyList`, vous pouvez exécuter le fichier `1-my_list.py`.
