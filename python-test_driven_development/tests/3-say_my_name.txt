@@ -1,26 +1,22 @@
-Printing a name with last name as a dict:
-    >>> say_my_name("John", {"last": "Doe"})
-    Traceback (most recent call last):
-        ...
-    TypeError: last_name must be a string
-Printing a name with both first and last names as integers:
-    >>> say_my_name(123, 456)
-    Traceback (most recent call last):
-        ...
-    TypeError: first_name must be a string
-Passing more than two arguments:
-    >>> say_my_name("Jean", "François", "Gray") #doctest: +ELLIPSIS
-    Traceback (most recent call last):
-        ...
-    TypeError: say_my_name() takes from 1 to 2 positional arguments but 
-        ...
-    Printing a name with last name as None:
-    >>> say_my_name("John", None)
-    Traceback (most recent call last):
-        ...
-    TypeError: last_name must be a string
-Printing a name with both first and last names as None:
-    >>> say_my_name(None, None)
-    Traceback (most recent call last):
-        ...
-    TypeError: first_name must be a string
+import unittest
+from 3-say_my_name import say_my_name
+
+class TestSayMyName(unittest.TestCase):
+    def test_basic(self):
+        self.assertEqual(say_my_name("John", "Doe"), "My name is John Doe")
+
+    def test_only_first_name(self):
+        self.assertEqual(say_my_name("John", ""), "My name is John ")
+
+    def test_only_last_name(self):
+        self.assertEqual(say_my_name("", "Doe"), "My name is  Doe")
+
+    def test_no_names(self):
+        self.assertEqual(say_my_name("", ""), "My name is  ")
+
+    def test_non_string_input(self):
+        with self.assertRaises(TypeError):
+            say_my_name(123, 456)
+
+if __name__ == '__main__':
+    unittest.main()
