@@ -1,20 +1,92 @@
->>> from say_my_name import say_my_name
+The ``3-say_my_name`` module
+============================
 
->>> say_my_name("John", "Smith")
-My name is John Smith
+Using ``say_my_name``
+---------------------
 
->>> say_my_name("Walter", "White")
-My name is Walter White
+Importing function from the module:
+    >>> say_my_name = __import__('3-say_my_name').say_my_name
 
->>> say_my_name("Bob")
-My name is Bob 
+Print a valid name:
+    >>> say_my_name("John", "Doe")
+    My name is John Doe
 
->>> say_my_name(12, "White")
-Traceback (most recent call last):
-    ...
-TypeError: first_name must be a string
+Printing a name with only first name provided:
+    >>> say_my_name("Charlene")
+    My name is Charlene
 
->>> say_my_name("John", 123)
-Traceback (most recent call last):
-    ...
-TypeError: last_name must be a string
+Printing a name with empty last name:
+    >>> say_my_name("Jean", "")
+    My name is Jean 
+
+Printing a name with non-string first name:
+    >>> say_my_name(123, "Doe")
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+Printing a name with non-string last name:
+    >>> say_my_name("John", 456)
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+Printing a name with non-string first and last names:
+    >>> say_my_name(123, 456)
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+Printing a name with first name as None:
+    >>> say_my_name(None, "Doe")
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+Printing a name with last name as None:
+    >>> say_my_name("John", None)
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+Printing a name with both first and last names as None:
+    >>> say_my_name(None, None)
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+Printing a name with first name as a list:
+    >>> say_my_name(["John"], "Doe")
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+Printing a name with last name as a list:
+    >>> say_my_name("John", ["Doe"])
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+Printing a name with first name as a dict:
+    >>> say_my_name({"first": "John"}, "Doe")
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+Printing a name with last name as a dict:
+    >>> say_my_name("John", {"last": "Doe"})
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+Printing a name with both first and last names as integers:
+    >>> say_my_name(123, 456)
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+Passing more than two arguments:
+    >>> say_my_name("Jean", "François", "Gray") #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+        ...
+    TypeError: say_my_name() takes from 1 to 2 positional arguments but ...
