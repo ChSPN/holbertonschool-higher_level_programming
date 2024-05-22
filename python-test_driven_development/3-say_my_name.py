@@ -1,23 +1,16 @@
 #!/usr/bin/python3
 """
-Ce module contient une fonction qui imprime "Mon nom est <prénom> <nom>".
-
-La fonction say_my_name prend deux arguments, un prénom et un nom.
-Si le prénom ou le nom ne sont pas des chaînes, elle lève une TypeError.
+Module contenant la fonction say_my_name.
+Imprime "My name is <first name> <last name>".
 """
 
 
 def say_my_name(first_name, last_name=""):
     """
-    Imprime "Mon nom est <prénom> <nom>".
-
-    Args:
-        first_name (str): Le prénom à imprimer.
-        last_name (str): Le nom à imprimer.
-
-    Raises:
-        TypeError: Si le prénom ou le nom ne sont pas des chaînes.
+    Imprime "My name is <first name> <last name>".
+    Les arguments doivent être des chaînes, sinon une exception TypeError est levée.
     """
+
     if not isinstance(first_name, str):
         raise TypeError("first_name must be a string")
     if not isinstance(last_name, str):
