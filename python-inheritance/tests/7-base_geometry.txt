@@ -1,5 +1,25 @@
-La classe BaseGeometry a deux méthodes : area et integer_validator.
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
-La méthode area ne prend aucun argument et lève une exception avec le message "area() is not implemented" lorsqu'elle est appelée.
+>>> bg = BaseGeometry()
 
-La méthode integer_validator prend deux arguments : name et value. Elle lève une exception TypeError avec le message "<name> must be an integer" si value n'est pas un entier, et une exception ValueError avec le message "<name> must be greater than 0" si value est inférieur ou égal à 0.
+>>> bg.integer_validator("my_int", 12)
+
+>>> bg.integer_validator("width", 89)
+
+>>> try:
+...     bg.integer_validator("name", "John")
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[TypeError] name must be an integer
+
+>>> try:
+...     bg.integer_validator("age", 0)
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[ValueError] age must be greater than 0
+
+>>> try:
+...     bg.integer_validator("distance", -4)
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[ValueError] distance must be greater than 0
