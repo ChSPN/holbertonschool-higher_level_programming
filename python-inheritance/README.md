@@ -1,4 +1,4 @@
-# Projet Python : Héritage
+# Projet Python : Héritage (python inheritance)
 
 Ce projet comprend plusieurs scripts Python qui illustrent le concept d'héritage en programmation orientée objet.
 
