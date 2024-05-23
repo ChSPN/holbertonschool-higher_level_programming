@@ -1,46 +1,35 @@
-#!/usr/bin/python3
-"""
-Ce module contient des tests pour la fonction say_my_name.
-"""
+The "say_my_name" doctest
+========================
 
-import unittest
-from 3-say_my_name import say_my_name
+Tests the say_my_name function from 3-say_my_name
+for any edge cases that may break the functionality
+of the imported function.
 
-class TestSayMyName(unittest.TestCase):
-    """
-    Cette classe teste la fonction say_my_name.
-    """
+>>> say_my_name = __import__('3-say_my_name').say_my_name
 
-    def test_basic(self):
-        """
-        Teste si la fonction fonctionne avec un prénom et un nom de famille.
-        """
-        self.assertEqual(say_my_name("John", "Doe"), "My name is John Doe")
+>>> say_my_name("John", "Smith")
+My name is John Smith
 
-    def test_only_first_name(self):
-        """
-        Teste si la fonction fonctionne avec seulement un prénom.
-        """
-        self.assertEqual(say_my_name("John", ""), "My name is John ")
+>>> say_my_name("Walter", "White")
+My name is Walter White
 
-    def test_only_last_name(self):
-        """
-        Teste si la fonction fonctionne avec seulement un nom de famille.
-        """
-        self.assertEqual(say_my_name("", "Doe"), "My name is  Doe")
+>>> say_my_name("Bob")
+My name is Bob 
 
-    def test_no_names(self):
-        """
-        Teste si la fonction fonctionne sans prénom ni nom de famille.
-        """
-        self.assertEqual(say_my_name("", ""), "My name is  ")
+>>> try:
+...     say_my_name(12, "White")
+... except Exception as e:
+...     print(e)
+first_name must be a string
 
-    def test_non_string_input(self):
-        """
-        Teste si la fonction lève une TypeError lorsqu'elle reçoit une entrée non valide.
-        """
-        with self.assertRaises(TypeError):
-            say_my_name(123, 456)
+>>> try:
+...     say_my_name("White", 12)
+... except Exception as e:
+...     print(e)
+last_name must be a string
 
-if __name__ == '__main__':
-    unittest.main()
+>>> try:
+...     say_my_name()
+... except Exception as e:
+...     print(e)
+say_my_name() missing 1 required positional argument: 'first_name'
