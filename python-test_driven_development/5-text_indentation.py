@@ -1,27 +1,21 @@
 #!/usr/bin/python3
-"""
-Ce module contient une fonction qui imprime un texte avec 2 nouvelles lignes
-après chaque caractère : ., ? et :.
-
-La fonction text_indentation prend un argument, le texte à imprimer.
-Si le texte n'est pas une chaîne, elle lève une exception TypeError.
-Il ne doit y avoir aucun espace au début ou à la fin de chaque ligne imprimée.
-"""
+"""Module documentation"""
 
 
 def text_indentation(text):
-    """
-    Imprime un texte avec 2 nouvelles lignes après chaque caractère: ., ? et :.
-
-    Args:
-        text (str): Le texte à imprimer.
-
-    Raises:
-        TypeError: Si le texte n'est pas une chaîne.
-    """
-    if not isinstance(text, str):
+    """Function documentation"""
+    e = "text_indentation() missing 1 required positional argument: 'text'"
+    if text is None:
+        raise TypeError(e)
+    if type(text) is not str:
         raise TypeError("text must be a string")
-
-    for char in ".:?":
-        text = text.replace(char, "{}\n\n".format(char))
-    print("\n".join(line.strip() for line in text.split("\n")), end="")
+    if not text:
+        raise TypeError("Text is empty")
+    c = 0
+    while c < len(text):
+        print(text[c], end="")
+        if text[c] in ".?:":
+            print("\n")
+            while c + 1 < len(text) and text[c + 1] == " ":
+                c += 1
+        c += 1
