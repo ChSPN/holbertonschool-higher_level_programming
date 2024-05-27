@@ -19,6 +19,6 @@ def read_file(filename=""):
     and prints it to stdout. The end="" argument in the print function is used to prevent it from 
     adding a newline at the end of the output.
     """
-    with open(filename, 'r', encoding='utf-8') as f:
-        print(f.read(), end="")
-
+    with open(filename, mode="r", encoding="utf-8") as f:
+        for line in f:
+            print(line, end="")
