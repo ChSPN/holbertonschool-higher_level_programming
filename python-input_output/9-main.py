@@ -1,12 +1,31 @@
 #!/usr/bin/python3
-Student = __import__('9-student').Student
+"""
+This module defines the Student class.
+"""
 
-students = [Student("John", "Doe", 23), Student("Bob", "Dylan", 27)]
+class Student:
+    """
+    A class that defines a student by their first name, last name, and age.
+    """
 
-for student in students:
-    j_student = student.to_json()
-    print(type(j_student))
-    print(j_student['first_name'])
-    print(type(j_student['first_name']))
-    print(j_student['age'])
-    print(type(j_student['age']))
+    def __init__(self, first_name, last_name, age):
+        """
+        Initializes a new Student instance.
+        
+        Args:
+            first_name (str): The first name of the student.
+            last_name (str): The last name of the student.
+            age (int): The age of the student.
+        """
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+
+    def to_json(self):
+        """
+        Retrieves a dictionary representation of the Student instance.
+        
+        Returns:
+            dict: A dictionary containing the attributes of the student.
+        """
+        return self.__dict__
