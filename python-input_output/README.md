@@ -40,7 +40,7 @@ How to convert a JSON string to a Python data structure
 
 ### [3. Write to a file](./3-write_file.py)
 * Write a function that writes a string to a text file (UTF8) and returns the number of characters written:
-
+`tests/3-to_json_string.txt`: Contains test cases for the `to_json_string` function.
 
 ### [4. Append to a file](./4-append_write.py)
 * Write a function that appends a string at the end of a text file (UTF8) and returns the number of characters added:
@@ -64,7 +64,13 @@ How to convert a JSON string to a Python data structure
 
 ### [9. Load, add, save](./9-add_item.py)
 * Write a script that adds all arguments to a Python list, and then save them to a file:
+- **9-student.py**: Defines the `Student` class with attributes `first_name`, `last_name`, and `age`, and a method `to_json` to retrieve a dictionary representation of the instance.
 
+## Requirements
+
+- Python 3.8.5
+- All files are executable
+- Followed `pycodestyle` guidelines
 
 ### [10. Class to JSON](./10-class_to_json.py)
 * Write a function that returns the dictionary description with simple data structure (list, dictionary, string, integer and boolean) for JSON serialization of an object:
