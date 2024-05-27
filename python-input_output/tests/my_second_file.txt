@@ -1,0 +1,25 @@
+"""
+This is a test file for the 'to_json_string' function.
+
+The 'to_json_string' function takes an object and returns its JSON string representation.
+"""
+
+# Import the function to test
+from to_json_string import to_json_string
+
+# Test with a list
+assert to_json_string([1, 2, 3]) == '[1, 2, 3]'
+
+# Test with a dictionary
+assert to_json_string({"name": "John", "age": 30}) == '{"name": "John", "age": 30}'
+
+# Test with a string
+assert to_json_string("Hello, World!") == '"Hello, World!"'
+
+# Test with a number
+assert to_json_string(12345) == '12345'
+
+# Test with a boolean
+assert to_json_string(True) == 'true'
+
+print("All tests passed!")
