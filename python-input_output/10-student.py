@@ -1,12 +1,22 @@
 #!/usr/bin/python3
+
+"""
+Module that defines a class Student.
+"""
+
+
 class Student:
     """
-    Defines a student.
+    A class that defines a student by:
+    - Public instance attributes: first_name, last_name, age
+    - Instantiation with first_name, last_name and age
+    - Public method to_json that retrieves a dictionary representation
+      of a Student instance
     """
 
     def __init__(self, first_name, last_name, age):
         """
-        Initializes a new Student instance.
+        Initialize a new Student instance.
 
         Args:
             first_name (str): The first name of the student.
@@ -25,7 +35,7 @@ class Student:
             attrs (list): A list of attribute names to retrieve.
 
         Returns:
-            A dictionary representing the Student instance.
+            dict: The dictionary representation of the Student instance.
         """
         if attrs is None:
             return self.__dict__
