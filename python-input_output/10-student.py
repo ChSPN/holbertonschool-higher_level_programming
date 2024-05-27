@@ -30,5 +30,5 @@ class Student:
         if attrs is None:
             return self.__dict__
         else:
-            return {attr: getattr(self, attr)
+            return {attr: self.__dict__[attr]
                     for attr in attrs if attr in self.__dict__}
