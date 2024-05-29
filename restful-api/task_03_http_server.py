@@ -22,6 +22,15 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
             self.wfile.write(b"OK")
+        elif self.path == '/info':
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            info = {
+                "version": "1.0",
+                "description": "A simple API built with http.server"
+            }
+            self.wfile.write(json.dumps(info).encode())
         else:
             self.send_response(404)
             self.send_header('Content-type', 'text/plain')
@@ -29,11 +38,9 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.wfile.write(b"Endpoint not found")
 
 
-# Create an object of the above class
 handler_object = MyHttpRequestHandler
 
 PORT = 8000
 my_server = socketserver.TCPServer(("localhost", PORT), handler_object)
 
-# Star the server
 my_server.serve_forever()
