@@ -1,24 +1,11 @@
-#!/usr/bin/env python3
-"""
-Ce module implémente un serveur HTTP simple utilisant le module http.server de Python.
-Il définit une classe de gestionnaire de requêtes HTTP qui répond à différentes requêtes GET.
-"""
-
-from http.server import BaseHTTPRequestHandler, HTTPServer
+#!/usr/bin/python3
+import http.server
+import socketserver
 import json
 
 
-class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
-    """
-    Cette classe est un gestionnaire de requêtes HTTP qui hérite de http.server.SimpleHTTPRequestHandler.
-    Elle définit une méthode do_GET pour gérer les requêtes GET.
-    """
-
+class SimpleHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
-        """
-        Cette méthode est appelée pour gérer les requêtes GET.
-        Elle vérifie le chemin de la requête et renvoie une réponse appropriée.
-        """
         if self.path == "/":
             self.send_response(200)
             self.send_header("Content-type", "text/plain")
@@ -45,3 +32,21 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "description": "A simple API built with http.server",
             }
             self.wfile.write(json.dumps(info).encode("utf-8"))
+        else:
+            self.send_response(404)
+            self.send_header("Content-type", "application/json")
+            self.end_headers()
+            error_message = {"error": "Endpoint not found"}
+            self.wfile.write(json.dumps(error_message).encode("utf-8"))
+
+
+def run(server_class=http.server.HTTPServer,
+        handler_class=SimpleHTTPRequestHandler):
+    server_address = ("", 8000)
+    httpd = server_class(server_address, handler_class)
+    print("Serving on port 8000")
+    httpd.serve_forever()
+
+
+if __name__ == "__main__":
+    run()
