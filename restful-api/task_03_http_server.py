@@ -5,7 +5,6 @@ Il définit une classe de gestionnaire de requêtes HTTP qui répond à différe
 """
 
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import socketserver
 import json
 
 
