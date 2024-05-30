@@ -4,7 +4,7 @@ Ce module implémente un serveur HTTP simple utilisant le module http.server de 
 Il définit une classe de gestionnaire de requêtes HTTP qui répond à différentes requêtes GET.
 """
 
-import http.server
+from http.server import BaseHTTPRequestHandler, HTTPServer
 import socketserver
 import json
 
