@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """
 task_03_http_server:
-    This module creates a simple HTTP server that can handle different request.
-    Serve Jason data in response to specific endpoints.
+    This module creates a simple HTTP server that can handle different requests. Serve Jason data in repsonse to specific endpoints.
 """
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
@@ -20,7 +19,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         """
         GET requests
         """
-        # Step 1 - basic HTTP Server
+        #Step 1 - basic HTTP Server
         if self.path == '/':
             response = "Hello, this is a simple API!"
 
@@ -28,7 +27,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.send_header("Content-type", "text/html")
             self.end_headers()
             self.wfile.write(bytes(response, "utf-8"))
-        # Step 2 - Serving JSON Data
+        #Step 2 - Serving JSON Data
         elif self.path == '/data':
             data = {"name": "John", "age": 30, "city": "New York"}
             json_data = json.dumps(data)
@@ -37,7 +36,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.send_header("Content-type", "application/json")
             self.end_headers()
             self.wfile.write(bytes(json_data, "utf-8"))
-        # Step 3 - Handling different endpoints
+        #Step 3 - Handling different endpoints
         elif self.path == '/status':
             response = "OK"
 
@@ -47,10 +46,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(bytes(response, "utf-8"))
 
         elif self.path == '/info':
-            info = {
-                "version": "1.0",
-                "description": "A simple API built with http.server"
-            }
+            info = {"version": "1.0", "description": "A simple API built with http.server"}
             json_info = json.dumps(info)
 
             self.send_response(200)
@@ -65,7 +61,6 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.send_header("Content-type", "text/plain")
             self.end_headers()
             self.wfile.write(bytes(response, "utf-8"))
-
 
 if __name__ == "__main__":
     server = HTTPServer((HOST, PORT), RequestHandler)
