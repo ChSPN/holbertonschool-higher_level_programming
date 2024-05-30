@@ -1,8 +1,16 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
+"""Develop a Simple API using Python with Flask"""
+
+import logging
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+
+"""Stockage des données en mémoire"""
 users = {
     "jane": {
         "username": "jane",
@@ -21,37 +29,45 @@ users = {
 
 @app.route('/')
 def home():
-    return "Welcome to the Flask API!"
+    """Home route to welcome users to the Flask API."""
+    return "Bienvenue sur l'API Flask !"
 
 
-@app.route('/data')
-def data():
+@app.route('/data', strict_slashes=False)
+def get_usernames():
+    """Route to get the list of all usernames."""
     return jsonify(list(users.keys()))
 
 
-@app.route('/status')
+@app.route('/status', strict_slashes=False)
 def status():
-    return "OK"
-
-
-@app.route('/users/<username>')
-def get_user(username):
-    user = users.get(username)
-    if user:
-        return jsonify(user)
-    else:
-        return jsonify({"error": "User not found"}), 404
-
-
-@app.route('/add_user', methods=['POST'])
-def add_user():
-    user_data = request.get_json()
-    username = user_data.get('username')
-    if username in users:
-        return jsonify({"error": "User already exists"}), 400
-    users[username] = user_data
-    return jsonify({"message": "User added", "user": user_data}), 201
+    """Route to check the status of the server."""
+    return jsonify({"status": "OK"})
 
 
 if __name__ == "__main__":
-    app.run()
+    host = '0.0.0.0'
+    port = 5000
+
+    """Enable debug mode for development"""
+    debug = True
+
+    """Set up logging"""
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+
+    """Print a message to indicate the server is starting"""
+    logger.info(f"Starting Flask server at http://{host}:{port}/")
+
+    """Additional configuration options"""
+    app.config['ENV'] = 'development'
+    app.config['DEBUG'] = debug
+    app.config['TESTING'] = False
+
+    """Log configuration details"""
+logger.info(f"Configuration - ENV: {app.config['ENV']},"
+            f"DEBUG: {app.config['DEBUG']},"
+            f"TESTING: {app.config['TESTING']}")
+
+"""Run the Flask app"""
+app.run(host=host, port=port, debug=debug)
