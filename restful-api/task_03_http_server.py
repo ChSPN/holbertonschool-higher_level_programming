@@ -1,11 +1,25 @@
 #!/usr/bin/env python3
+"""
+Ce module implémente un serveur HTTP simple utilisant le module http.server de Python.
+Il définit une classe de gestionnaire de requêtes HTTP qui répond à différentes requêtes GET.
+"""
+
 import http.server
 import socketserver
 import json
 
 
 class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
+    """
+    Cette classe est un gestionnaire de requêtes HTTP qui hérite de http.server.SimpleHTTPRequestHandler.
+    Elle définit une méthode do_GET pour gérer les requêtes GET.
+    """
+
     def do_GET(self):
+        """
+        Cette méthode est appelée pour gérer les requêtes GET.
+        Elle vérifie le chemin de la requête et renvoie une réponse appropriée.
+        """
         if self.path == "/":
             self.send_response(200)
             self.send_header("Content-type", "text/plain")
@@ -32,15 +46,3 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "description": "A simple API built with http.server",
             }
             self.wfile.write(json.dumps(info).encode("utf-8"))
-        else:
-            self.send_response(404)
-            self.send_header("Content-type", "text/plain")
-            self.end_headers()
-            self.wfile.write(b"Endpoint not found")
-
-
-PORT = 8000
-
-with socketserver.TCPServer(("", PORT), MyHttpRequestHandler) as httpd:
-    print(f"Serving on port {PORT}")
-    httpd.serve_forever()
