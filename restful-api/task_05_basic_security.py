@@ -1,19 +1,15 @@
 #!/usr/bin/python3
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_httpauth import HTTPBasicAuth
-from flask_jwt_extended import JWTManager
+from flask_jwt_extended import JWTManager, jwt_required, create_access_token
 
-# Create Flask app
-app = Flask(__name__)
+app = Flask(____)
+app.config['SECRET_KEY'] = 'super-secret-key'  # Change this!
 
-# Initialize HTTP Basic Auth
 auth = HTTPBasicAuth()
-
-# Initialize JWT Manager
 jwt = JWTManager(app)
 
-# In-memory storage for users
 users = {
     "user1": {
         "username": "user1",
@@ -30,11 +26,29 @@ users = {
 
 @auth.verify_password
 def verify_password(username, password):
-    user = users.get(username)
-    if user and check_password_hash(user['password'], password):
-        return user
+    if username in users and \
+            check_password_hash(users[username]['password'], password):
+        return username
 
 
-@app.route('/')
-def home():
-    return "Welcome to the Secure Flask API!"
+@app.route('/basic-protected')
+@auth.login_required
+def basic_protected():
+    return jsonify({"message": "Basic Auth: Access Granted"})
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.json.get('username', None)
+    password = request.json.get('password', None)
+    if username not in users or \
+            not check_password_hash(users[username]['password'], password):
+        return jsonify({"error": "Bad username or password"}), 401
+
+    token = create_access_token(identity=username)
+    return jsonify(access_token=token), 200
+
+
+@app.route('/jwt-protected')
+@jwt_required
+def jwt_protected
