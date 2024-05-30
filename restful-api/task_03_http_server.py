@@ -1,73 +1,57 @@
 #!/usr/bin/python3
-"""
-task_03_http_server:
-    This module creates a simple HTTP server that can handle different request.
-    Serve Jason data in response to specific endpoints.
-"""
-from http.server import BaseHTTPRequestHandler, HTTPServer
+"""Develop a simple API using Python with the `http.server`"""
+
+
+import http.server
 import json
+import socketserver
 
-
-HOST = "localhost"
 PORT = 8000
 
 
-class RequestHandler(BaseHTTPRequestHandler):
-    """
-    This class handles the HTTP requests
-    """
+class SimpleHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
-        """
-        GET requests
-        """
-        # Step 1 - basic HTTP Server
+        # Log request path for debugging
+        print(f"Received GET request for path: {self.path}")
+
         if self.path == '/':
+            self.send_response(200)
+            self.send_header('Content-type', 'text/plain')
+            self.end_headers()
             response = "Hello, this is a simple API!"
-
-            self.send_response(200)
-            self.send_header("Content-type", "text/html")
-            self.end_headers()
-            self.wfile.write(bytes(response, "utf-8"))
-        # Step 2 - Serving JSON Data
+            self.wfile.write(response.encode('utf-8'))
         elif self.path == '/data':
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
             data = {"name": "John", "age": 30, "city": "New York"}
-            json_data = json.dumps(data)
-
-            self.send_response(200)
-            self.send_header("Content-type", "application/json")
-            self.end_headers()
-            self.wfile.write(bytes(json_data, "utf-8"))
-        # Step 3 - Handling different endpoints
+            response = json.dumps(data)
+            self.wfile.write(response.encode('utf-8'))
         elif self.path == '/status':
-            response = "OK"
-
             self.send_response(200)
-            self.send_header("Content-type", "text/html")
+            self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(bytes(response, "utf-8"))
-
+            status = {"status": "OK"}
+            response = json.dumps(status)
+            self.wfile.write(response.encode('utf-8'))
         elif self.path == '/info':
-            info = {
-                "version": "1.0",
-                "description": "A simple API built with http.server"
-            }
-            json_info = json.dumps(info)
-
             self.send_response(200)
-            self.send_header("Content-type", "application/json")
+            self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(bytes(json_info, "utf-8"))
-
+            info = {"version": "1.0", "description":
+                    "A simple API built with http.server"}
+            response = json.dumps(info)
+            self.wfile.write(response.encode('utf-8'))
         else:
-            response = "Endpoint not found"
-
             self.send_response(404)
-            self.send_header("Content-type", "text/plain")
+            self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(bytes(response, "utf-8"))
+            error = {"error": "Endpoint not found"}
+            response = json.dumps(error)
+            self.wfile.write(response.encode('utf-8'))
 
 
-if __name__ == "__main__":
-    server = HTTPServer((HOST, PORT), RequestHandler)
-    print(f"Server running on {HOST}:{PORT}")
-    server.serve_forever()
+# Configuration et démarrage du serveur
+with socketserver.TCPServer(("", PORT), SimpleHTTPRequestHandler) as httpd:
+    print(f"Serving on port {PORT}")
+    httpd.serve_forever()
