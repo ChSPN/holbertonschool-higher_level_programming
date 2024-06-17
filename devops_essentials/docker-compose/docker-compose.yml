@@ -1,0 +1,31 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: test
+    networks:
+      - private-network
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  admin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: test@test.fr
+      PGADMIN_DEFAULT_PASSWORD: test
+      PGADMIN_DEFAULT_SERVER: db
+    depends_on:
+      - db
+    networks:
+      - private-network
+    ports:
+      - "8080:80"
+
+networks:
+  private-network:
+
+volumes:
+  db-data:
