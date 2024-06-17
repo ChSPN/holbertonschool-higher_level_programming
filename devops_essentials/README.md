@@ -16,7 +16,7 @@ This project focuses on creating and managing Docker containers to encapsulate a
 ## Getting Started ##
 To build and run the Docker container:
 - Clone the repository:
-git clone https://github.com/Delphine-H/holbertonschool-docker_project.git
+git clone https://github.com/ChSPN/holbertonschool-docker_project.git
 cd holbertonschool-docker_project
 - Build the Docker image:
  docker build -t my-docker-project .
