@@ -1,25 +1,41 @@
 #!/usr/bin/python3
-"""
-List all states from the database hbtn_0e_0_usa where name matches the argument
-"""
-
-import MySQLdb
 import sys
+import MySQLdb
 
 if __name__ == "__main__":
+    # Get MySQL credentials, database name, and state name from command line arguments
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    db_name = sys.argv[3]
+    state_name = sys.argv[4]
+
+    # Connect to the MySQL database
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=sys.argv[1],
-        passwd=sys.argv[2],
-        db=sys.argv[3],
+        user=mysql_username,
+        passwd=mysql_password,
+        db=db_name,
     )
-    cur = db.cursor()
-    cur.execute(
-        "SELECT * FROM states WHERE name = %s ORDER BY id ASC", (sys.argv[4],)
+
+    # Create a cursor object to interact with the database
+    cursor = db.cursor()
+
+    # Execute the SQL query to select states with the specified name
+    query = (
+        "SELECT id, name FROM states WHERE name = '{}' ORDER BY id ASC".format(
+            state_name
+        )
     )
-    rows = cur.fetchall()
+    cursor.execute(query)
+
+    # Fetch all the rows from the executed query
+    rows = cursor.fetchall()
+
+    # Print each row
     for row in rows:
         print(row)
-    cur.close()
+
+    # Close the cursor and the database connection
+    cursor.close()
     db.close()
