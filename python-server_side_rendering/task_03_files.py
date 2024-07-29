@@ -11,33 +11,43 @@ def read_json(file_path):
 
 
 def read_csv(file_path):
-    with open(file_path, mode="r") as file:
-        csv_reader = csv.DictReader(file)
-        return list(csv_reader)
+    products = []
+    with open(file_path, "r") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            products.append(
+                {
+                    "id": int(row["id"]),
+                    "name": row["name"],
+                    "category": row["category"],
+                    "price": float(row["price"]),
+                }
+            )
+    return products
 
 
 @app.route("/products")
 def products():
     source = request.args.get("source")
-    product_id = request.args.get("id")
-    data = []
-    error = None
+    product_id = request.args.get("id", type=int)
+
+    if source not in ["json", "csv"]:
+        return render_template("product_display.html", error="Wrong source")
 
     if source == "json":
         data = read_json("products.json")
     elif source == "csv":
         data = read_csv("products.csv")
-    else:
-        error = "Wrong source"
 
     if product_id:
-        data = [
-            product for product in data if str(product.get("id")) == product_id
-        ]
-        if not data:
-            error = "Product not found"
+        product = next((p for p in data if p["id"] == product_id), None)
+        if not product:
+            return render_template(
+                "product_display.html", error="Product not found"
+            )
+        data = [product]
 
-    return render_template("product_display.html", data=data, error=error)
+    return render_template("product_display.html", products=data)
 
 
 if __name__ == "__main__":
