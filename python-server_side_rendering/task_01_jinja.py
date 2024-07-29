@@ -20,4 +20,3 @@ def contact():
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
-# This is a simple Flask web application with three routes: "/", "/about", and "/contact".
