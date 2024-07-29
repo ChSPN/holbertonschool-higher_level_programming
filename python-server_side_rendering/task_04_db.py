@@ -12,47 +12,59 @@ def read_json(file_path):
 
 
 def read_csv(file_path):
-    with open(file_path, mode="r") as file:
-        csv_reader = csv.DictReader(file)
-        return list(csv_reader)
+    products = []
+    with open(file_path, "r") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            products.append(
+                {
+                    "id": int(row["id"]),
+                    "name": row["name"],
+                    "category": row["category"],
+                    "price": float(row["price"]),
+                }
+            )
+    return products
 
 
-def read_sql():
-    conn = sqlite3.connect("products.db")
-    conn.row_factory = sqlite3.Row
+def read_sql(database_path):
+    conn = sqlite3.connect(database_path)
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM Products")
-    data = cursor.fetchall()
+    cursor.execute("SELECT id, name, category, price FROM Products")
+    rows = cursor.fetchall()
     conn.close()
-    return [
-        dict(ix) for ix in data
-    ]  # Convert sqlite3.Row objects to dictionaries
+    products = []
+    for row in rows:
+        products.append(
+            {"id": row[0], "name": row[1], "category": row[2], "price": row[3]}
+        )
+    return products
 
 
 @app.route("/products")
 def products():
     source = request.args.get("source")
-    product_id = request.args.get("id")
-    data = []
-    error = None
+    product_id = request.args.get("id", type=int)
+
+    if source not in ["json", "csv", "sql"]:
+        return render_template("product_display.html", error="Wrong source")
 
     if source == "json":
         data = read_json("products.json")
     elif source == "csv":
         data = read_csv("products.csv")
     elif source == "sql":
-        data = read_sql()
-    else:
-        error = "Wrong source"
+        data = read_sql("products.db")
 
     if product_id:
-        data = [
-            product for product in data if str(product.get("id")) == product_id
-        ]
-        if not data:
-            error = "Product not found"
+        product = next((p for p in data if p["id"] == product_id), None)
+        if not product:
+            return render_template(
+                "product_display.html", error="Product not found"
+            )
+        data = [product]
 
-    return render_template("product_display.html", data=data, error=error)
+    return render_template("product_display.html", products=data)
 
 
 if __name__ == "__main__":
